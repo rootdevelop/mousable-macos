@@ -20,13 +20,13 @@ final class Settings {
 
     // MARK: - Defaults
 
-    static let defaultCursorAcceleration: Double = 1.5
-    static let defaultCursorMaxSpeed: Double = 30
+    static let defaultCursorAcceleration: Double = 0.575
+    static let defaultCursorMaxSpeed: Double = 11.5
     static let defaultCursorStartSpeed: Double = 1.5
     static let defaultTurboMaxSpeed: Double = 75
 
-    static let defaultScrollAcceleration: Double = 6
-    static let defaultScrollMaxSpeed: Double = 60
+    static let defaultScrollAcceleration: Double = 4.6
+    static let defaultScrollMaxSpeed: Double = 46
     static let defaultScrollStartSpeed: Double = 2
 
     static let defaultActivateKeyCode: CGKeyCode = 38       // J

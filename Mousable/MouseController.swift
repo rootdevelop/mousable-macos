@@ -28,8 +28,9 @@ final class MouseController {
         guard let currentEvent = CGEvent(source: nil) else { return }
         let currentLocation = currentEvent.location
 
-        let newX = currentLocation.x + CGFloat(dx)
-        let newY = currentLocation.y + CGFloat(dy)
+        let bounds = MouseController.screenBounds()
+        let newX = min(max(currentLocation.x + CGFloat(dx), bounds.minX), bounds.maxX - 1)
+        let newY = min(max(currentLocation.y + CGFloat(dy), bounds.minY), bounds.maxY - 1)
         let newPoint = CGPoint(x: newX, y: newY)
 
         CGWarpMouseCursorPosition(newPoint)
@@ -120,6 +121,24 @@ final class MouseController {
                                wheel3: 0) {
             event.post(tap: .cghidEventTap)
         }
+    }
+
+    // MARK: - Screen bounds
+
+    /// Returns the union of all active display bounds in CG coordinate space.
+    private static func screenBounds() -> CGRect {
+        var displayCount: UInt32 = 0
+        CGGetActiveDisplayList(0, nil, &displayCount)
+        guard displayCount > 0 else { return CGRect(x: 0, y: 0, width: 1920, height: 1080) }
+
+        var displays = [CGDirectDisplayID](repeating: 0, count: Int(displayCount))
+        CGGetActiveDisplayList(displayCount, &displays, &displayCount)
+
+        var union = CGDisplayBounds(displays[0])
+        for i in 1..<Int(displayCount) {
+            union = union.union(CGDisplayBounds(displays[i]))
+        }
+        return union
     }
 
     // MARK: - Private
