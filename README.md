@@ -6,8 +6,7 @@ Mousable is a macOS menu bar utility inspired by [Mouseable for Windows](https:/
 
 ## Download
 
-<!-- TODO: Add download link when release build is available -->
-**Coming soon** — a pre-built release will be available here shortly.
+[Download latest version](https://github.com/rootdevelop/mousable-macos/releases/tag/1.0.0.0)
 
 ## Getting Started
 
